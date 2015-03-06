@@ -52,62 +52,37 @@
 
       <!-- Three columns of text below the carousel -->
       <div class="row">
-        <div class="col-lg-3"  >
-			<div class="drop-shadow">
-			<div class="row">
-				<div class="col-lg-4">
-					<img class="img-responsive img-circle" src="mike.jpg" alt="Generic placeholder image" >
-				</div>
-				<div class="col-lg-8">
-					<h3>Mike Luczynski</h3>
-					<p>Phone: 1 306 234 2343</p>
-				</div>
-			</div>
-			</div>
-        </div><!-- /.col-lg-3 -->
-        <div class="col-lg-3"  >
-			<div class="drop-shadow">
-			<div class="row">
-				<div class="col-lg-4">
-					<img class="img-responsive img-circle" src="contact.png" alt="Generic placeholder image" >
-				</div>
-				<div class="col-lg-8">
-					<h3>Mike Luczynski</h3>
-					<p>Phone: 1 306 234 2343</p>
-				</div>
-			</div>
-			</div>
-        </div><!-- /.col-lg-3 -->
-		<div class="col-lg-3"  >
-			<div class="drop-shadow">
-			<div class="row">
-				<div class="col-lg-4">
-					<img class="img-responsive img-circle" src="contact.png" alt="Generic placeholder image" >
-				</div>
-				<div class="col-lg-8">
-					<h3>Mike Luczynski</h3>
-					<p>Phone: 1 306 234 2343</p>
-				</div>
-			</div>
-			</div>
-        </div><!-- /.col-lg-3 -->
-		<div class="col-lg-3"  >
-			<div class="drop-shadow">
-			<div class="row">
-				<div class="col-lg-4">
-					<img class="img-responsive img-circle" src="contact.png" alt="Generic placeholder image" >
-				</div>
-				<div class="col-lg-8">
-					<h3>Mike Luczynski</h3>
-					<p>Phone: 1 306 234 2343</p>
-					<p>Address</p>
-					<p>Birthday</p>
-				</div>
-			</div>
-			</div>
-        </div><!-- /.col-lg-3 -->
-		
-		
+		<?php
+			$servername="lovett.usask.ca";
+			$username = "cmpt350_mjl566";
+			$dbname = "cmpt350_mjl566";
+			$password = "j3n1l21kn0";
+			
+			$conn = new mysqli($servername,$username,$password,$dbname);
+			
+			if($conn->connect_error){
+				die("Connection failed: ".$conn->connect_error);
+			}
+			
+			
+			$sql = "Update AddressBook 
+				SET firstname = '".$_POST['fname']."',
+					lastname = '".$_POST['lname']."',
+					company = '".$_POST['company']."',
+					phone = '".$_POST['phone']."',
+					email = '".$_POST['email']."',
+					url = '".$_POST['url']."',
+					address = '".$_POST['address']."',
+					birthday = '".$_POST['birthday']."',
+					add_date = '".$_POST['add_date']."'	
+				WHERE id=".$_POST['contact_id'];
+				
+			if($conn->query($sql) == TRUE)
+				echo "<p>Contact Updated!</p>";
+			else
+				echo "\nError updating contact: ".$conn->error;
+		 ?> 
+		 <a href="home.php">Back to Contacts </a>
         
       </div><!-- /.row -->
 

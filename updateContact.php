@@ -51,74 +51,6 @@
     
 
     <div class="container-fluid">
-
-      <!-- Three columns of text below the carousel -->
-      <div class="row">
-		<div class="col-lg-3"  >
-			<div class="drop-shadow img-rounded">
-				<h2>Add a Contact</h2>
-				<div id="error">
-					Please check for errors!
-				</div>
-				  <form class="form-horizontal" action="addContact.php" method="post" >
-					<div class="form-group">
-					  <label for="fname" class="col-xs-3">First Name:</label>
-					  <div class=" col-xs-8">
-						<input type="text" class="form-control" name="fname" id="fanme" placeholder="Enter first name">
-					  </div>
-					</div>
-					<div class="form-group">
-					  <label for="lname" class="col-xs-3">Last Name:</label>
-					  <div class=" col-xs-8">
-					  <input type="text" class="form-control" name="lname"id="lname" placeholder="Enter last name">
-					</div></div>
-					<div class="form-group">
-					  <label for="company" class="col-xs-3">Company:</label>
-					  <div class=" col-xs-8">
-					  <input type="text" class="form-control" name="company"id="company" placeholder="Enter company name">
-					</div></div>
-					<div class="form-group">
-					  <label for="phone" class="col-xs-3">Phone:</label>
-					  <div class=" col-xs-8">
-					  <input type="number" class="form-control" name="phone"id="phone" placeholder="Enter phone">
-					</div></div>
-					<div class="form-group">
-					  <label for="email" class="col-xs-3">Email:</label>
-					  <div class=" col-xs-8">
-					  <input type="email" class="form-control" name="email"id="email" placeholder="Enter email">
-					</div></div>
-					<div class="form-group">
-					  <label for="url" class="col-xs-3">URL:</label>
-					  <div class=" col-xs-8">
-					  <input type="text" class="form-control"name="url"id="url" placeholder="Enter URL">
-					</div></div>
-					<div class="form-group">
-					  <label for="address" class="col-xs-3">Address:</label>
-					  <div class=" col-xs-8">
-					  <input type="text" class="form-control"name="address"id="address" placeholder="Enter address">
-					</div></div>
-					<div class="form-group">
-					  <label for="brithday" class="col-xs-3">Birthday:</label>
-					  <div class="col-xs-8">
-					  <input type="date" class="form-control"name="birthday"id="birthday" >
-					</div></div>
-					<div class="form-group">
-					  <label for="add_date" class="col-xs-3">Date:</label>
-					  <div class=" col-xs-8">
-					  <input type="date" class="form-control"name="add_date"id="add_date" >
-					</div></div>
-					<div class="form-group">
-					  <label for="note" class="col-xs-3">Notes:</label>
-					  <div class=" col-xs-8">
-					  <input type="text" class="form-control"name="note"id="note" placeholder="Enter a note">
-					</div></div>
-					<div class="cl-xs-12">
-						<button class="btn btn-block" type="submit" id="submit" >Submit</button>
-					</div>
-					
-				  </form>
-			</div>
-        </div><!-- /.col-lg-3 -->
 		
 		<?php
 			$servername="lovett.usask.ca";
@@ -132,6 +64,90 @@
 				die("Connection failed: ".$conn->connect_error);
 			}
 			
+			$id=$_GET['ContactID'];
+			$sql = "SELECT * FROM AddressBook WHERE id=".$id;
+			$result = $conn->query($sql);
+			
+			if($result->num_rows > 0){
+				$row = $result->fetch_assoc();
+				$bday = strtotime($row["birthday"]);
+				
+				echo "
+					<div class='row'>
+						<div class='col-lg-3'  >
+							<div class='drop-shadow img-rounded'>
+								<h2>Update Contact</h2>
+								<div id='error'>
+									Please check for errors!
+								</div>
+								  <form class='form-horizontal' action='update.php' method='post' >
+									<input type='hidden' name='contact_id' value='".$_GET['ContactID']."' />
+									<div class='form-group'>
+									  <label for='fname' class='col-xs-3'>First Name:</label>
+									  <div class=' col-xs-8'>
+										<input type='text' class='form-control' name='fname' id='fanme' value='".$row["firstname"]."'>
+									  </div>
+									</div>
+									<div class='form-group'>
+									  <label for='lname' class='col-xs-3'>Last Name:</label>
+									  <div class=' col-xs-8'>
+									  <input type='text' class='form-control' name='lname'id='lname' value='".$row["lastname"]."'>
+									</div></div>
+									<div class='form-group'>
+									  <label for='company' class='col-xs-3'>Company:</label>
+									  <div class=' col-xs-8'>
+									  <input type='text' class='form-control' name='company'id='company' value='".$row["company"]."'>
+									</div></div>
+									<div class='form-group'>
+									  <label for='phone' class='col-xs-3'>Phone:</label>
+									  <div class=' col-xs-8'>
+									  <input type='number' class='form-control' name='phone'id='phone' value='".$row["phone"]."'>
+									</div></div>
+									<div class='form-group'>
+									  <label for='email' class='col-xs-3'>Email:</label>
+									  <div class=' col-xs-8'>
+									  <input type='email' class='form-control' name='email'id='email' value='".$row["email"]."'>
+									</div></div>
+									<div class='form-group'>
+									  <label for='url' class='col-xs-3'>URL:</label>
+									  <div class=' col-xs-8'>
+									  <input type='text' class='form-control'name='url'id='url' value='".$row["url"]."'>
+									</div></div>
+									<div class='form-group'>
+									  <label for='address' class='col-xs-3'>Address:</label>
+									  <div class=' col-xs-8'>
+									  <input type='text' class='form-control'name='address'id='address' value='".$row["address"]."'>
+									</div></div>
+									<div class='form-group'>
+									  <label for='brithday' class='col-xs-3'>Birthday:</label>
+									  <div class='col-xs-8'>
+									  <input type='date' class='form-control'name='birthday'id='birthday' value='".date('mm/dd/Y', $bday)."' >
+									</div></div>
+									<div class='form-group'>
+									  <label for='add_date' class='col-xs-3'>Date:</label>
+									  <div class=' col-xs-8'>
+									  <input type='date' class='form-control'name='add_date' id='add_date' >
+									</div></div>
+									<div class='form-group'>
+									  <label for='note' class='col-xs-3'>Notes:</label>
+									  <div class=' col-xs-8'>
+									  <input type='text' class='form-control'name='note'id='note' value='".$row["firstname"]."' >
+									</div></div>
+									<div class='cl-xs-12'>
+										<button class='btn btn-block' type='submit' id='submit' >Submit</button>
+									</div>
+									
+								  </form>
+							</div>
+						</div>";
+			
+			}
+			
+			
+			
+			
+			
+			
 			$sql= "SELECT * FROM AddressBook";
 			$result = $conn->query($sql);
 			$ctr = 1;
@@ -141,9 +157,8 @@
 				while($row = $result->fetch_assoc()){
 					if($ctr == 1){
 						echo	"
-							
 								<div class='row'>
-									<div class='col-lg-3 img-rounded'  >
+									<div class='col-lg-2 img-rounded'  >
 										<div class='drop-shadow img-rounded'>
 											<div class='row'>
 												<div class='col-sm-4'>
@@ -174,12 +189,12 @@
 						$ctr ++;
 					}else{
 						echo	"
-									<div class='col-lg-3 img-rounded'  >
+									<div class='col-lg-2 img-rounded'  >
 										<div class='drop-shadow img-rounded'>
 											<div class='row'>
 												<div class='col-sm-4'>
 													<img class='img-responsive img-circle' src='contact.png' alt='Generic placeholder image' >
-													<a href='updateContact.php?ContactID=".$row["id"]."'>
+													<a href='updateContact.php?ContacttID=".$row["id"]."'>
 														Update
 													</a>
 													<a href='deleteContact.php?ContactID=".$row["id"]."' 
@@ -201,7 +216,7 @@
 											</div>
 										</div>
 									</div>";
-						if($ctr == 4){
+						if($ctr == 6){
 							$ctr = 1;
 							echo "</div><div class='row' style='padding: 5px'><hr></div>";
 						}else{
