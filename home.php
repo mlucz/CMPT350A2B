@@ -143,7 +143,7 @@
 						echo	"
 							
 								<div class='row'>
-									<div class='col-lg-3 img-rounded'  >
+									<div class='col-lg-4 img-rounded'  >
 										<div class='drop-shadow img-rounded'>
 											<div class='row'>
 												<div class='col-sm-4'>
@@ -174,7 +174,7 @@
 						$ctr ++;
 					}else{
 						echo	"
-									<div class='col-lg-3 img-rounded'  >
+									<div class='col-lg-4 img-rounded'  >
 										<div class='drop-shadow img-rounded'>
 											<div class='row'>
 												<div class='col-sm-4'>

@@ -62,17 +62,17 @@
 			
 			if($conn->connect_error){
 				die("Connection failed: ".$conn->connect_error);
-			}else{
-				echo "Database connection succesful. ";
 			}
 			
 			$id=$_GET['ContactID'];
 			$sql = "DELETE FROM AddressBook WHERE id=".$id;
 				
 			if($conn->query($sql) == TRUE)
-				echo "<p>Contact Deleted!</p>";
+				echo "<h1>Contact Deleted!</h1>";
 			else
 				echo "\nError deleting contact: ".$conn->error;
+				
+			header("Refresh: 5; url=home.php");
 		 ?> 
 		 <a href="home.php">Back to Contacts </a>
         

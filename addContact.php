@@ -66,14 +66,27 @@
 				echo "Database connection succesful. ";
 			}
 			
-			$sql = "INSERT INTO AddressBook(firstname, lastname, company, phone, email, url, address, birthday, add_date,note)
+			$sql = "INSERT INTO AddressBook(firstname, lastname, company, phone, email, url, address,";
+			
+			if(!empty($_POST["birthday"])){
+				$sql .= "birthday,";
+			}
+			$sql .= "add_date,note)
 					VALUES ('".$_POST['fname']."', '".$_POST['lname']."','".$_POST['company']."', '".$_POST['phone']."',
-					'".$_POST['email']."','".$_POST['url']."', '".$_POST['address']."', '".$_POST['birthday']."','".$_POST['add_date']."', '".$_POST['note']."')";
+					'".$_POST['email']."','".$_POST['url']."', '".$_POST['address']."',";
+			
+			if(!empty($_POST["birthday"])){
+				$sql .= "'".$_POST['birthday']."',";
+			}		
+					
+			$sql .= "'".$_POST['add_date']."', '".$_POST['note']."')";
 				
 			if($conn->query($sql) == TRUE)
-				echo "<p>New Contact created with name: ".$_POST['fname']." ".$_POST['lname']."</p>";
+				echo "<h1>Added Contact: ".$_POST['fname']." ".$_POST['lname']."</h1>";
 			else
 				echo "\nError adding contact: ".$conn->error;
+				
+			header("Refresh: 5; url=home.php");
 		 ?> 
 		 <a href="home.php">Back to Contacts </a>
         

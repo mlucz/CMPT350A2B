@@ -65,6 +65,7 @@
 			}
 			
 			
+			
 			$sql = "Update AddressBook 
 				SET firstname = '".$_POST['fname']."',
 					lastname = '".$_POST['lname']."',
@@ -72,15 +73,21 @@
 					phone = '".$_POST['phone']."',
 					email = '".$_POST['email']."',
 					url = '".$_POST['url']."',
-					address = '".$_POST['address']."',
-					birthday = '".$_POST['birthday']."',
-					add_date = '".$_POST['add_date']."'	
+					address = '".$_POST['address']."',";
+					
+			if(!empty($_POST["birthday"])){
+				$sql .= "birthday = '".$_POST['birthday']."',";
+			}
+					
+			$sql .=	"add_date = '".$_POST['add_date']."'	
 				WHERE id=".$_POST['contact_id'];
 				
 			if($conn->query($sql) == TRUE)
-				echo "<p>Contact Updated!</p>";
+				echo "<h1>Contact Updated!</h1>";
 			else
 				echo "\nError updating contact: ".$conn->error;
+				
+			header("Refresh: 5; url=home.php");
 		 ?> 
 		 <a href="home.php">Back to Contacts </a>
         

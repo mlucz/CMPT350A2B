@@ -70,7 +70,12 @@
 			
 			if($result->num_rows > 0){
 				$row = $result->fetch_assoc();
-				$bday = strtotime($row["birthday"]);
+				
+				
+				$adate = strtotime($row["add_date"]);
+				//echo "<p>".$bday."</p>";
+				$adate = date('Y-m-d', $adate);
+				echo "<p>".$adate."</p>";
 				
 				echo "
 					<div class='row'>
@@ -121,20 +126,20 @@
 									<div class='form-group'>
 									  <label for='brithday' class='col-xs-3'>Birthday:</label>
 									  <div class='col-xs-8'>
-									  <input type='date' class='form-control'name='birthday'id='birthday' value='".date('mm/dd/Y', $bday)."' >
+									  <input type='date' class='form-control'name='birthday' id='birthday'  >
 									</div></div>
 									<div class='form-group'>
 									  <label for='add_date' class='col-xs-3'>Date:</label>
 									  <div class=' col-xs-8'>
-									  <input type='date' class='form-control'name='add_date' id='add_date' >
+									  <input type='date' class='form-control'name='add_date' id='add_date' value='".$adate."'>
 									</div></div>
 									<div class='form-group'>
 									  <label for='note' class='col-xs-3'>Notes:</label>
 									  <div class=' col-xs-8'>
-									  <input type='text' class='form-control'name='note'id='note' value='".$row["firstname"]."' >
+									  <input type='text' class='form-control'name='note'id='note' value='".$row["note"]."' >
 									</div></div>
 									<div class='cl-xs-12'>
-										<button class='btn btn-block' type='submit' id='submit' >Submit</button>
+										<button class='btn btn-block' type='submit' id='submit' >Update</button>
 									</div>
 									
 								  </form>
@@ -158,14 +163,12 @@
 					if($ctr == 1){
 						echo	"
 								<div class='row'>
-									<div class='col-lg-2 img-rounded'  >
+									<div class='col-lg-4 img-rounded'  >
 										<div class='drop-shadow img-rounded'>
 											<div class='row'>
 												<div class='col-sm-4'>
 													<img class='img-responsive img-circle' src='contact.png' alt='Generic placeholder image' >
-													<a href='updateContact.php?ContactID=".$row["id"]."'>
-														Update
-													</a>
+													
 													<a href='deleteContact.php?ContactID=".$row["id"]."' 
 														onclick='return confirm(\"are you sure?\")'>
 														Delete
@@ -189,14 +192,12 @@
 						$ctr ++;
 					}else{
 						echo	"
-									<div class='col-lg-2 img-rounded'  >
+									<div class='col-lg-4 img-rounded'  >
 										<div class='drop-shadow img-rounded'>
 											<div class='row'>
 												<div class='col-sm-4'>
 													<img class='img-responsive img-circle' src='contact.png' alt='Generic placeholder image' >
-													<a href='updateContact.php?ContacttID=".$row["id"]."'>
-														Update
-													</a>
+													
 													<a href='deleteContact.php?ContactID=".$row["id"]."' 
 														onclick='return confirm(\"are you sure?\")'>
 														Delete
@@ -216,7 +217,7 @@
 											</div>
 										</div>
 									</div>";
-						if($ctr == 6){
+						if($ctr == 3){
 							$ctr = 1;
 							echo "</div><div class='row' style='padding: 5px'><hr></div>";
 						}else{
