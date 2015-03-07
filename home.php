@@ -201,7 +201,7 @@
 											</div>
 										</div>
 									</div>";
-						if($ctr == 4){
+						if($ctr == 3){
 							$ctr = 1;
 							echo "</div><div class='row' style='padding: 5px'><hr></div>";
 						}else{
