@@ -27,7 +27,7 @@
 
 <body>
 	<div class="jumbotron" id="jumbotron">
-      <div class="container" align="center">
+      <div class="container" align="center" style="color:white">
         <h1 id="name">MySQL Address Book</h1>
 		<hr class="star-light">
 		<h3 id="title"> Author: mjl566 & roh919</h3>

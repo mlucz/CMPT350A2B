@@ -35,7 +35,7 @@
   <body>
     
 	<div class="jumbotron" id="jumbotron">
-      <div class="container" align="center">
+      <div class="container" align="center" style="color:white">
 	  <!--<img class="img-responsive  img-circle img-thumbnail" src="mike.jpg"> -->
         <h1 id="aname">MYSQL Address Book</h1>
 		<hr class="star-light">
