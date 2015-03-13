@@ -8,21 +8,12 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Carousel Template for Bootstrap</title>
+    <title>MySQL Address Book</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-   
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- Custom styles for this template -->
-    <link href="carousel.css" rel="stylesheet">
 	
 	<style>
 	 .drop-shadow {
@@ -39,7 +30,7 @@
 	  <!--<img class="img-responsive  img-circle img-thumbnail" src="mike.jpg"> -->
         <h1 id="aname">MYSQL Address Book</h1>
 		<hr class="star-light">
-		<h3 id="title"> Author: mjl566</h3>
+		<h3 id="title"> Author: mjl566 & roh919</h3>
    
       </div>
     </div>
@@ -68,13 +59,12 @@
 			$sql = "DELETE FROM AddressBook WHERE id=".$id;
 				
 			if($conn->query($sql) == TRUE)
-				echo "<h1>Contact Deleted!</h1>";
+				echo  "<div class='alert alert-success' role='alert'><h1>Contact has been Deleted!</h1> You are being redirected <a href='home.php'alert-link'>Home.</a></div>";
 			else
-				echo "\nError deleting contact: ".$conn->error;
+				echo  "<div class='alert alert-danger' role='alert'>Error deleting contact :".$e->getMessage()."</div><a href='home.php'alert-link'>Go Home.</a>";
 				
 			header("Refresh: 5; url=home.php");
 		 ?> 
-		 <a href="home.php">Back to Contacts </a>
         
       </div><!-- /.row -->
 

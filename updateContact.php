@@ -13,21 +13,12 @@
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-   
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- Custom styles for this template -->
-    <link href="carousel.css" rel="stylesheet">
 	
 	<style>
 	 .drop-shadow {
         -webkit-box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
         box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
+        padding:  10px;
 	</style>
 	
 	
@@ -38,10 +29,9 @@
     
 	<div class="jumbotron" id="jumbotron">
       <div class="container" align="center">
-	  <!--<img class="img-responsive  img-circle img-thumbnail" src="mike.jpg"> -->
-        <h1 id="name">MYSQL Address Book</h1>
+        <h1 id="name">MySQL Address Book</h1>
 		<hr class="star-light">
-		<h3 id="title"> Author: mjl566</h3>
+		<h3 id="title"> Author: mjl566 & roh919</h3>
    
       </div>
     </div>
@@ -73,16 +63,17 @@
 				
 				
 				$adate = strtotime($row["add_date"]);
-				//echo "<p>".$bday."</p>";
 				$adate = date('Y-m-d', $adate);
-				echo "<p>".$adate."</p>";
 				
-				echo "
+echo "
 					<div class='row'>
 						<div class='col-lg-3'  >
-							<div class='drop-shadow img-rounded'>
-								<h2>Update Contact</h2>
-								<div id='error'>
+							<div class='panel panel-default'>
+								<div class='panel-heading text-center'>
+									<h4>Update Contact</h4>
+								</div>
+								<div class='panel-body'>
+									<div id='error'>
 									Please check for errors!
 								</div>
 								  <form class='form-horizontal' action='update.php' method='post' >
@@ -138,19 +129,20 @@
 									  <div class=' col-xs-8'>
 									  <input type='text' class='form-control'name='note'id='note' value='".$row["note"]."' >
 									</div></div>
-									<div class='cl-xs-12'>
-										<button class='btn btn-block' type='submit' id='submit' >Update</button>
-									</div>
+										<div class='panel-footer'>
+											<button class='btn btn-primary btn-block' type='submit' id='submit' >Save Changes</button>
+											<button type='button' class='btn btn-warning btn-block' onclick='window.location.href=\"home.php\"'>
+												Cancel
+											</button>
+										</div>
 									
 								  </form>
+								  </div>
 							</div>
 						</div>";
 			
 			}
-			
-			
-			
-			
+
 			
 			
 			$sql= "SELECT * FROM AddressBook";
@@ -163,28 +155,26 @@
 					if($ctr == 1){
 						echo	"
 								<div class='row'>
-									<div class='col-lg-4 img-rounded'  >
-										<div class='drop-shadow img-rounded'>
-											<div class='row'>
-												<div class='col-sm-4'>
-													<img class='img-responsive img-circle' src='contact.png' alt='Generic placeholder image' >
-													
-													<a href='deleteContact.php?ContactID=".$row["id"]."' 
-														onclick='return confirm(\"are you sure?\")'>
-														Delete
-													</a>
-												</div>
-												<div class='col-sm-8'>
-													<h4>".$row["firstname"]." ".$row["lastname"]."</h4>
-													<p>Company: ".$row["company"]."</p>
-													<p>Phone: ".$row["phone"]."</p>
-													<p>Email: ".$row["email"]."</p>
-													<p>URL: ".$row["url"]."</p>
-													<p>Address: ".$row["address"]."</p>
-													<p>Birthday: ".$row["birthday"]."</p>
-													<p>Date: ".$row["add_date"]."</p>
-													<p>Note: ".$row["note"]."</p>
-												</div>
+									<div class='col-lg-4'  >
+										<div class='panel panel-default'>
+											<div class='panel-heading text-center' style='color:white;'>
+												<h4>".$row["firstname"]." ".$row["lastname"]."</h4>
+											</div>
+											<div class='panel-body'>
+												<p>Company: ".$row["company"]."</p>
+												<p>Phone: ".$row["phone"]."</p>
+												<p>Email: ".$row["email"]."</p>
+												<p>URL: ".$row["url"]."</p>
+												<p>Address: ".$row["address"]."</p>
+												<p>Birthday: ".$row["birthday"]."</p>
+												<p>Date: ".$row["add_date"]."</p>
+												<p>Note: ".$row["note"]."</p>
+											</div>
+											<div class='panel-footer'>
+												<a class='btn btn-danger btn-block' href='deleteContact.php?ContactID=".$row["id"]."' 
+													onclick='return confirm(\"Would you like to delete ".$row["firstname"]." ".$row["lastname"]." from Address Book?\")'>
+													Delete
+												</a>
 											</div>
 										</div>
 									</div>
@@ -192,29 +182,27 @@
 						$ctr ++;
 					}else{
 						echo	"
-									<div class='col-lg-4 img-rounded'  >
-										<div class='drop-shadow img-rounded'>
-											<div class='row'>
-												<div class='col-sm-4'>
-													<img class='img-responsive img-circle' src='contact.png' alt='Generic placeholder image' >
-													
-													<a href='deleteContact.php?ContactID=".$row["id"]."' 
-														onclick='return confirm(\"are you sure?\")'>
+									<div class='col-lg-4'>
+										<div class='panel panel-default'>
+											<div class='panel-heading text-center' style='color:white;'>
+												<h4>".$row["firstname"]." ".$row["lastname"]."</h4>
+											</div>
+											<div class='panel-body'>
+												<p>Company: ".$row["company"]."</p>
+												<p>Phone: ".$row["phone"]."</p>
+												<p>Email: ".$row["email"]."</p>
+												<p>URL: ".$row["url"]."</p>
+												<p>Address: ".$row["address"]."</p>
+												<p>Birthday: ".$row["birthday"]."</p>
+												<p>Date: ".$row["add_date"]."</p>
+												<p>Note: ".$row["note"]."</p>
+											</div>
+												<div class='panel-footer'>
+													<a class='btn btn-danger btn-block' href='deleteContact.php?ContactID=".$row["id"]."' 
+														onclick='return confirm(\"Would you like to delete ".$row["firstname"]." ".$row["lastname"]." from Address Book?\")'>
 														Delete
 													</a>
 												</div>
-												<div class='col-sm-8'>
-													<h4>".$row["firstname"]." ".$row["lastname"]."</h4>
-													<p>Company: ".$row["company"]."</p>
-													<p>Phone: ".$row["phone"]."</p>
-													<p>Email: ".$row["email"]."</p>
-													<p>URL: ".$row["url"]."</p>
-													<p>Address: ".$row["address"]."</p>
-													<p>Birthday: ".$row["birthday"]."</p>
-													<p>Date: ".$row["add_date"]."</p>
-													<p>Note: ".$row["note"]."</p>
-												</div>
-											</div>
 										</div>
 									</div>";
 						if($ctr == 3){
@@ -229,7 +217,7 @@
 				echo "</div>";
 			} //end main if
 			
-		 ?> 
+		?> 
 		   
       </div><!-- /.row -->
 
@@ -241,9 +229,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/docs.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="js/ie10-viewport-bug-workaround.js"></script>
+
 	
 	<script type="text/javascript">
 			$(document).ready(function(){

@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Carousel Template for Bootstrap</title>
+    <title>MySQL Address Book</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -39,7 +39,7 @@
 	  <!--<img class="img-responsive  img-circle img-thumbnail" src="mike.jpg"> -->
         <h1 id="aname">MYSQL Address Book</h1>
 		<hr class="star-light">
-		<h3 id="title"> Author: mjl566</h3>
+		<h3 id="title"> Author: mjl566 & roh919</h3>
    
       </div>
     </div>
@@ -63,7 +63,7 @@
 			if($conn->connect_error){
 				die("Connection failed: ".$conn->connect_error);
 			}else{
-				echo "Database connection succesful. ";
+
 			}
 			
 			$sql = "INSERT INTO AddressBook(firstname, lastname, company, phone, email, url, address,";
@@ -82,13 +82,15 @@
 			$sql .= "'".$_POST['add_date']."', '".$_POST['note']."')";
 				
 			if($conn->query($sql) == TRUE)
-				echo "<h1>Added Contact: ".$_POST['fname']." ".$_POST['lname']."</h1>";
+				echo "<div class='alert alert-success' role='alert'><h1>Added Contact!</h1></br> You are being redirected
+						  <a href='home.php'alert-link'>Home.</a>
+						</div>";
 			else
-				echo "\nError adding contact: ".$conn->error;
+				echo "<div class='alert alert-danger' role='alert'>Error updating contact :".$e->getMessage()."
+						</div><a href='home.php'alert-link'>Go Home.</a>";
 				
 			header("Refresh: 5; url=home.php");
 		 ?> 
-		 <a href="home.php">Back to Contacts </a>
         
       </div><!-- /.row -->
 
