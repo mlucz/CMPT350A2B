@@ -64,6 +64,7 @@
 				
 				$adate = strtotime($row["add_date"]);
 				$adate = date('Y-m-d', $adate);
+				
 				if(!empty($row["birthday"])){
 					$bddate = strtotime($row["birthday"]);
 					$bddate = date('Y-m-d', $bddate);
