@@ -68,9 +68,9 @@
 				$sql .= "birthday = '".$_POST['birthday']."',";
 			}
 					
-			$sql .=	"add_date = '".$_POST['add_date']."'	
-					note ='".$_POST["note"]."'
-					WHERE id=".$_POST['contact_id'];
+			$sql .=		"add_date = '".$_POST['add_date']."',
+						note ='".$_POST["note"]."'
+				WHERE id=".$_POST['contact_id'];
 			
 
 			if($conn->query($sql) == TRUE)
