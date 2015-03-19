@@ -64,9 +64,11 @@
 				
 				$adate = strtotime($row["add_date"]);
 				$adate = date('Y-m-d', $adate);
-				
-				$bddate = strtotime($row["birthday"]);
-				$bddate = date('Y-m-d', $bddate);
+				if(!empty($row["birthday"])){
+					$bddate = strtotime($row["birthday"]);
+					$bddate = date('Y-m-d', $bddate);
+				}else
+					$bddate = "0000-00-00";
 				
 echo "
 					<div class='row'>
