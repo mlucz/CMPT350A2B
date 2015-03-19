@@ -69,7 +69,8 @@
 			}
 					
 			$sql .=	"add_date = '".$_POST['add_date']."'	
-				WHERE id=".$_POST['contact_id'];
+					note ='".$_POST["note"]."'
+					WHERE id=".$_POST['contact_id'];
 			
 
 			if($conn->query($sql) == TRUE)
